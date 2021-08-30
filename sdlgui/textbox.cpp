@@ -329,7 +329,12 @@ void TextBox::draw(SDL_Renderer* renderer)
     {
       int w, h;
       mTheme->getUtf8Bounds("sans", fontSize(), mValueTemp.c_str(), &w, &h);
-      float textBound[4] = {drawPos.x, drawPos.y, drawPos.x + w, drawPos.y + h};
+      float textBound[4] = {
+        static_cast<float>(drawPos.x),
+        static_cast<float>(drawPos.y),
+        static_cast<float>(drawPos.x + w),
+        static_cast<float>(drawPos.y + h)
+      };
       float lineh = textBound[3] - textBound[1];
 
         // find cursor positions
@@ -366,7 +371,12 @@ void TextBox::draw(SDL_Renderer* renderer)
 
                 // draw selection
                 SDL_Color c = Color(255, 255, 255, 80).toSdlColor();
-                SDL_Rect sr{ oldDrawPos.x + caretx, oldDrawPos.y + 4, selx - caretx, height() - 4 };
+                SDL_Rect sr{
+                  static_cast<int>(oldDrawPos.x + caretx),
+                  static_cast<int>(oldDrawPos.y + 4),
+                  static_cast<int>(selx - caretx),
+                  static_cast<int>(height() - 4)
+                };
                 SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
                 SDL_RenderFillRect(renderer, &sr);
             }
