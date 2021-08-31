@@ -1,7 +1,6 @@
-#include <nanogui/nanogui.h>
 #import <Cocoa/Cocoa.h>
 
-NAMESPACE_BEGIN(nanogui)
+NAMESPACE_BEGIN(sdlgui)
 
 std::string file_dialog(const std::vector<std::pair<std::string, std::string>> &filetypes, bool save) {
     std::string path = "";
@@ -43,4 +42,4 @@ void chdir_to_bundle_parent() {
     chdir([path fileSystemRepresentation]);
 }
 
-NAMESPACE_END(nanogui)
+NAMESPACE_END(sdlgui)
