@@ -1,3 +1,4 @@
+#import "common.h"
 #import <Cocoa/Cocoa.h>
 
 NAMESPACE_BEGIN(sdlgui)
