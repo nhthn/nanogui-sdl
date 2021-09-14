@@ -117,6 +117,7 @@ std::array<char, 8> utf8(int c) {
     return seq;
 }
 
+#if !defined(__APPLE__)
 std::string file_dialog(const std::vector<std::pair<std::string, std::string>> &filetypes, bool save) {
 #define FILE_DIALOG_MAX_BUFFER 1024
 #if defined(_WIN32)
@@ -174,7 +175,7 @@ std::string file_dialog(const std::vector<std::pair<std::string, std::string>> &
     return std::string(ofn.lpstrFile);
 #else
     char buffer[FILE_DIALOG_MAX_BUFFER];
-    std::string cmd = "zenity --file-selection ";
+    std::string cmd = "/usr/bin/zenity --file-selection ";
     if (save)
         cmd += "--save ";
     cmd += "--file-filter=\"";
@@ -192,6 +193,7 @@ std::string file_dialog(const std::vector<std::pair<std::string, std::string>> &
     return result;
 #endif
 }
+#endif
 
 void Object::decRef(bool dealloc) const noexcept {
     --m_refCount;
